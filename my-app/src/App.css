@@ -1,42 +1,66 @@
-* {
+body, html {
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background-color: #2e2e2e;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  text-align: center;
+  background-color: #1d1e30;
+  height: 100%;
 }
 
 .container {
+  box-sizing: border-box;
   height: 100%;
   width: 100%;
   display: grid;
   grid-template-rows: 30% 40% 30%;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+  padding: 1em 3em;
 }
 
 .logo-row{
-  background-color: red;
-  justify-content: center;
-  align-items: center;
-  justify-items: center;
+  padding: 2em 2em 6em 2em;
+  height: auto;
+
 }
 
 .response-box{
-  background-color: blue;
-  justify-content: center;
-  align-items: center;
-  justify-items: center;
+  height: auto;
+  border: 5px solid #a291d5;
+  border-radius: 50px;
+  padding: 1em 2em;
+  color: #7d91b4;
 }
 
-.input-row{
-  background-color: pink;
-  justify-content: center;
-  align-items: center;
-  justify-items: center;
+
+.input-row input {
+  position: relative;
+  width: 100%;
+  padding: 1em 0.8em 1em;
+  background: #1d1e30;
+  border: 5px solid #a291d5;
+  border-radius: 50px;
+  outline: none;
+  color: #7d91b4;
+  font-size: 1.2em;
+  box-shadow: none;
+}
+
+button {
+  position: relative;
+  bottom: 4.2em;
+  left: 12.5em;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  outline: none;
+}
+
+.button img {
+  height: 3em;
+}
+
+.logoimage{
+  height: 20em;
 }
