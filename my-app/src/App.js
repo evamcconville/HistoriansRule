@@ -2,30 +2,29 @@ import React, { useState } from 'react';
 import './App.css';
 import { Mistral } from '@mistralai/mistralai';
 
-
-///////
-
 const apiKey = process.env.MISTRAL_API_KEY || 'Q9wYLD8kvpWmXkYdpeDYGjpwfEbvAxOV';
 
-const client = new Mistral({apiKey: apiKey});
+const client = new Mistral({ apiKey: apiKey });
 
 function App() {
   const [response, setResponse] = useState(""); // State for chat response
   const [userInput, setUserInput] = useState("woof"); // State for user input
 
-  function handleChange (event) { 
+  // Handles user input changes
+  function handleChange(event) { 
     setUserInput(event.target.value);
-    console.log(userInput)
   }
 
+  // Handles form submission and fetches chatbot response
   const handleSubmit = async (event) => {
-    event.preventDefault();
-  }
+    event.preventDefault(); // Prevents page reload on form submit
 
-const chatResponse = await client.chat.complete({
-  model: 'mistral-large-latest',
-  messages: [
-    {role: 'system', content: `From now on, you are a very natural and kind person who has just completed the bootcamp at School of Code. You will kindly ask the user how they are doing in the bootcamp, which week they are in, and if there is anything they are finding difficult. If you see that they are interested in a particular topic, you will delve deeper into it. If they have any doubts, you will explain them perfectly, using examples, tables, step-by-step guides, and emojis. As an expert in all topics, you will respond naturally but technically to all the questions they ask, and be as accurate as possible about the content included in each week:
+    try {
+      // Call the chat API with the user's input
+      const chatResponse = await client.chat.complete({
+        model: 'mistral-tiny',
+        messages: [
+          { role: 'system', content: `From now on, you are a very natural and kind person who has just completed the bootcamp at School of Code. You will kindly ask the user how they are doing in the bootcamp, which week they are in, and if there is anything they are finding difficult. If you see that they are interested in a particular topic, you will delve deeper into it. If they have any doubts, you will explain them perfectly, using examples, tables, step-by-step guides, and emojis. As an expert in all topics, you will respond naturally but technically to all the questions they ask, and be as accurate as possible about the content included in each week:
 At School of Code, Bootcampers will experience working in almost every area of a technology company to give them a good all-round grounding, and learn what their strengths, weaknesses, and passions are. We have structured this through a series of internship modules. In these internships, our aim is to set them up for success in that direction. Their aim is to do exactly what you'd do in any job - learn as much as possible, build relationships with your teammates, and deliver value.
 
 Week 1: School of Code Onboarding
@@ -129,43 +128,41 @@ AI is coming. You'll learn about how you can take advantage of the latest breakt
 Week 13+: Team Project Delivery
 The Final Countdown. You will embark on a quest to solve a real-world problem for a stakeholder in your teams, combining all the skills you've explored and learning a whole lot more.
 
-Please do not use exact wording from this syllabus, repharase each answer.`},
-    
-{role: 'user', content: `${userInput}`}
-  ],
-  temperature: 0.7
-});
+Please do not use exact wording from this syllabus, repharase each answer.` },
+          { role: 'user', content: `${userInput}` }
+        ],
+        temperature: 0.7
+      });
 
-console.log('Chat:', chatResponse.choices[0].message.content);
-
-///////////
+      // Set the chat response state to display it in the UI
+      setResponse(chatResponse.choices[0].message.content);
+    } catch (error) {
+      console.error("Error fetching chat response:", error);
+      setResponse("Sorry, something went wrong.");
+    }
+  };
 
   return (
     <div className="container">
-      
       <div className="logo-row">
         <h1>SOC DIGITAL BUDDY</h1>
         <h2>Learn from someone who has already walked the path.</h2>
       </div>
 
       <div className="response-box">
-        <span>{chatResponse}</span> {/* Display chat response */}
+        <span>{response}</span> {/* Display chat response */}
       </div>
 
-<form onSubmit={handleSubmit}>
-          <input 
-              value={userInput}
-              name="query" 
-              onChange={(event) => handleChange(event)}
-              placeholder="Ask a question..." 
-              className="user-input"/>
-          <button type="submit">Go</button>
-        </form>
-
-      {/* <div className="input-row">
-        <input type="text" placeholder="Ask a question..." className="user-input" />
-        <button className="send-btn">SEND</button>
-      </div> */}
+      <form onSubmit={handleSubmit}>
+        <input 
+          value={userInput}
+          name="query"
+          onChange={handleChange}
+          placeholder="Ask a question..." 
+          className="user-input" 
+        />
+        <button type="submit">Go</button>
+      </form>
     </div>
   );
 }
