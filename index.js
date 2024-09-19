@@ -112,7 +112,8 @@ Week 13+: Team Project Delivery
 The Final Countdown. You will embark on a quest to solve a real-world problem for a stakeholder in your teams, combining all the skills you've explored and learning a whole lot more.
 
 Please do not use exact wording from this syllabus, repharase each answer.`},
-    {role: 'user', content: 'Im on week 12? What do you think is the most important topic during this week?'}
+    
+{role: 'user', content: 'Im on week 10. What do you think is the most important topic during this week?'}
   ],
   temperature: 0.7
 });
