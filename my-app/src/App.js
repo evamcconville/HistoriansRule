@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [chatResponse, setChatResponse] = useState(""); // State for chat response
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      
+      <div className="logo-row">
+        <h1>SOC DIGITAL BUDDY</h1>
+        <h2>Learn from someone who has already walked the path.</h2>
+      </div>
+
+      <div className="response-box">
+        <span>{chatResponse}</span> {/* Display chat response */}
+      </div>
+
+      <div className="input-row">
+        <input type="text" placeholder="Ask a question..." className="user-input" />
+        <button className="send-btn">SEND</button>
+      </div>
     </div>
   );
 }
