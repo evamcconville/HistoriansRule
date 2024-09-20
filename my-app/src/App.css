@@ -14,11 +14,11 @@ body, html {
   align-items: center;
   justify-items: center;
   text-align: center;
-  padding: 1em 3em;
+  padding: 1em 7em;
 }
 
 .logo-row{
-  padding: 2em 2em 6em 2em;
+  padding: 8em 2em 6em 2em;
   height: auto;
 
 }
@@ -46,9 +46,9 @@ body, html {
 }
 
 button {
-  position: relative;
-  bottom: 4.2em;
-  left: 12.5em;
+  position: relative; 
+  bottom: 5.1em;
+  left: 13.5em;
   background-color: transparent;
   border: none;
   padding: 0;
@@ -58,7 +58,7 @@ button {
 }
 
 .button img {
-  height: 3em;
+  height: 5em;
 }
 
 .logoimage{
